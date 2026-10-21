@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Texans Wrestling Club | Youth Wrestling in Argyle, TX</title>
+<link rel="icon" href="img/logo.jpg">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="USA Wrestling club in Argyle, Texas for boys and girls ages 4-18. Folkstyle, Freestyle and Greco-Roman. Come to a practice.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#d1202f;--red2:#9e1826;--navy:#252265;--navy2:#110f33;--navy3:#0b0a24;--gold:#f4b73b;--ink:#14132b;--mut:#5d5c74;--line:#e7e6ef;--bg:#f6f5fa}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.anton{font-family:Anton,Impact,sans-serif;text-transform:uppercase;letter-spacing:.01em;font-weight:400}
+h2,h3{font-family:Oswald,Impact,sans-serif;text-transform:uppercase;line-height:1.02;letter-spacing:.005em}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.eyebrow:before{content:"";width:22px;height:3px;background:currentColor;border-radius:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:15px;padding:16px 24px;border-radius:14px;transition:transform .2s,box-shadow .2s;letter-spacing:.01em}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:18px;height:18px}
+.btn-red{background:linear-gradient(180deg,#e52b3a,var(--red));color:#fff;box-shadow:0 12px 28px rgba(209,32,47,.45),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.35);backdrop-filter:blur(8px)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+/* mock-up banner */
+.mock{position:fixed;top:0;left:0;right:0;z-index:31;height:28px;display:flex;align-items:center;justify-content:center;background:var(--gold);color:var(--navy2);font-size:12px;font-weight:600;letter-spacing:.01em;text-align:center;padding:0 10px}
+/* bar */
+.bar{position:fixed;top:28px;left:0;right:0;z-index:30;transition:background .3s,box-shadow .3s}
+.bar.solid{background:rgba(17,15,51,.92);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.bar .wrap{display:flex;align-items:center;gap:12px;height:66px}
+.bar img{width:42px;height:42px;border-radius:11px;object-fit:cover;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.bar .nm{flex:1;color:#fff;font-family:Oswald,sans-serif;font-weight:700;font-size:18px;text-transform:uppercase;line-height:1}
+.bar .nm small{display:block;font-family:Inter,sans-serif;font-weight:700;font-size:10px;letter-spacing:.2em;color:#ff7b86;margin-top:4px}
+.bar nav{display:none;gap:30px;font-weight:600;font-size:14.5px;color:rgba(255,255,255,.8)}
+.bar nav a:hover{color:#fff}
+.bar .jbtn{padding:11px 18px;font-size:14px;border-radius:11px;background:#fff;color:var(--red);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.bar.solid .jbtn{background:linear-gradient(180deg,#e52b3a,var(--red));color:#fff}
+
+/* hero */
+.hero{position:relative;min-height:100svh;background:radial-gradient(120% 80% at 85% 10%,#2e2a86 0%,var(--navy2) 45%,var(--navy3) 100%);color:#fff;overflow:hidden;padding:128px 0 0}
+.hero .slab{position:absolute;right:-30%;top:-10%;width:90%;height:130%;background:linear-gradient(160deg,var(--red),var(--red2));transform:skewX(-14deg);opacity:.95}
+.hero .slab2{position:absolute;right:-34%;top:-10%;width:90%;height:130%;border-left:3px solid rgba(255,255,255,.7);transform:skewX(-14deg) translateX(-26px)}
+.hero .ghost{position:absolute;left:-2%;bottom:-4%;font-family:Anton,sans-serif;font-size:42vw;line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.07);white-space:nowrap;pointer-events:none;user-select:none}
+.hero .grain{position:absolute;inset:0;opacity:.35;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:4px 4px;mix-blend-mode:overlay}
+.hero .wrap{position:relative;z-index:2;display:grid;gap:34px}
+.pill{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:8px 14px 8px 10px;border-radius:999px;font-size:12.5px;font-weight:700}
+.pill i{width:9px;height:9px;border-radius:50%;background:#35e08a;box-shadow:0 0 0 0 rgba(53,224,138,.6);animation:ping 1.8s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(53,224,138,.6)}80%,100%{box-shadow:0 0 0 10px rgba(53,224,138,0)}}
+.hero h1{font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(64px,17vw,148px);line-height:.96;margin:20px 0 18px;letter-spacing:.005em}
+.hero h1 .r{display:block;color:transparent;-webkit-text-stroke:2px #fff;position:relative}
+.hero h1 .r b{position:absolute;inset:0;color:#fff;clip-path:inset(0 100% 0 0);animation:fill 1.4s .5s cubic-bezier(.7,0,.2,1) forwards;font-weight:400}
+@keyframes fill{to{clip-path:inset(0 0 0 0)}}
+.hero h1 .s{color:#ff3b4b;text-shadow:0 10px 40px rgba(209,32,47,.55)}
+.hero p.lead{font-size:17.5px;color:rgba(255,255,255,.85);max-width:520px}
+.hero p.lead b{color:#fff}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+/* countdown */
+.next{margin-top:30px;display:inline-flex;align-items:center;gap:16px;background:rgba(10,9,36,.55);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:14px 18px;backdrop-filter:blur(10px)}
+.next .lbl{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#ff8a94}
+.next .when{font-weight:700;font-size:14.5px;margin-top:2px}
+.cd{display:flex;gap:8px}
+.cd div{min-width:52px;text-align:center;background:rgba(255,255,255,.08);border-radius:11px;padding:6px 4px}
+.cd b{display:block;font-family:Anton,sans-serif;font-weight:400;font-size:24px;line-height:1.1}
+.cd span{font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.6);text-transform:uppercase}
+
+/* collage */
+.collage{position:relative;height:430px;margin:0 6px}
+.collage figure{position:absolute;background:#fff;padding:8px 8px 34px;border-radius:6px;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+.collage figure img{width:100%;height:100%;object-fit:cover;border-radius:2px}
+.collage figcaption{position:absolute;left:12px;bottom:8px;font-family:Oswald,sans-serif;text-transform:uppercase;font-size:13px;font-weight:600;color:var(--navy);letter-spacing:.04em}
+.collage .f1{width:72%;height:270px;left:0;top:20px;transform:rotate(-5deg);z-index:2;animation:float 7s ease-in-out infinite}
+.collage .f2{width:62%;height:220px;right:0;top:150px;transform:rotate(4deg);z-index:3;animation:float 8s 1s ease-in-out infinite}
+.collage .f3{width:46%;height:170px;left:8%;top:258px;transform:rotate(3deg);z-index:1}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.badge{position:absolute;z-index:5;right:4%;top:0;width:118px;height:118px;border-radius:50%;background:var(--gold);color:var(--navy2);display:grid;place-items:center;text-align:center;font-family:Anton,sans-serif;text-transform:uppercase;font-size:15px;line-height:1.05;box-shadow:0 18px 40px rgba(0,0,0,.35);transform:rotate(10deg);animation:spin 18s linear infinite}
+.badge b{display:block;font-size:34px;font-weight:400}
+@keyframes spin{from{rotate:0deg}to{rotate:360deg}}
+.badge span{display:block;animation:spin 18s linear infinite reverse}
+
+/* ticker */
+.ticker{position:relative;z-index:3;margin-top:46px;background:var(--gold);color:var(--navy2);transform:rotate(-1.5deg) scale(1.03);overflow:hidden;border-top:3px solid var(--navy2);border-bottom:3px solid var(--navy2)}
+.ticker .tr{display:flex;width:max-content;animation:tick 32s linear infinite}
+.ticker span{font-family:Anton,sans-serif;text-transform:uppercase;font-size:20px;padding:12px 0;white-space:nowrap}
+.ticker span:after{content:"★";margin:0 22px;color:var(--red)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* practice strip */
+.practice{background:#fff;position:relative;z-index:4;padding:70px 0 20px}
+.pcard{display:grid;gap:14px}
+.pbox{border-radius:20px;padding:22px;border:1px solid var(--line);background:linear-gradient(180deg,#fff,#fbfbfe);display:flex;gap:16px;align-items:flex-start;box-shadow:0 14px 34px rgba(17,15,51,.06)}
+.ico{flex:none;width:48px;height:48px;border-radius:14px;background:linear-gradient(160deg,#ffe3e6,#ffd0d5);color:var(--red);display:grid;place-items:center}
+.ico svg{width:24px;height:24px}
+.pbox .k{font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.pbox b{display:block;font-size:20px;font-family:Oswald,sans-serif;text-transform:uppercase;color:var(--navy);margin-top:2px}
+.pbox span{font-size:14px;color:var(--mut)}
+.days{display:flex;gap:6px;margin-top:10px}
+.days em{font-style:normal;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--bg);color:#b2b1c4}
+.days em.on{background:var(--navy);color:#fff;box-shadow:0 6px 14px rgba(37,34,101,.3)}
+
+section{padding:80px 0}
+.sec-h{margin-bottom:34px}
+.sec-h h2{font-size:clamp(38px,9vw,64px);color:var(--navy);margin-top:10px}
+.sec-h h2 em{font-style:normal;color:var(--red)}
+.sec-h p{color:var(--mut);margin-top:12px;max-width:560px;font-size:16.5px}
+
+/* styles */
+.styles{display:grid;gap:16px}
+.style{position:relative;border-radius:22px;padding:28px 24px 26px;overflow:hidden;color:#fff;min-height:250px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate;transition:transform .3s}
+.style:hover{transform:translateY(-6px)}
+.style .bgp{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center}
+.style:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(17,15,51,.15),rgba(17,15,51,.92) 70%)}
+.style.red:after{background:linear-gradient(180deg,rgba(158,24,38,.25),rgba(158,24,38,.95) 70%)}
+.style .n{position:absolute;right:18px;top:6px;font-family:Anton,sans-serif;font-size:96px;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.4)}
+.style h3{font-size:34px}
+.style p{font-size:15px;color:rgba(255,255,255,.85);margin-top:8px;max-width:330px}
+.style .chip{align-self:flex-start;margin-bottom:12px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.16);padding:6px 10px;border-radius:8px}
+
+/* trophy wall */
+.trophy{background:radial-gradient(90% 70% at 50% 0%,#2a2675,var(--navy2) 60%,var(--navy3));color:#fff;position:relative;overflow:hidden}
+.trophy .sec-h h2{color:#fff}.trophy .sec-h p{color:rgba(255,255,255,.72)}
+.trophy .eyebrow{color:var(--gold)}
+.trophy .ghost2{position:absolute;right:-4%;top:10px;font-family:Anton,sans-serif;font-size:260px;line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.05)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px}
+.stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:18px 14px;text-align:center}
+.stat b{display:block;font-family:Anton,sans-serif;font-weight:400;font-size:44px;line-height:1;color:var(--gold)}
+.stat span{font-size:12.5px;color:rgba(255,255,255,.7);font-weight:600}
+.events{display:grid;gap:16px}
+.ev{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:22px;overflow:hidden}
+.ev .im{height:190px;background-size:cover;background-position:center 30%;position:relative}
+.ev .im:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(17,15,51,.85))}
+.ev .im .d{position:absolute;left:16px;bottom:12px;z-index:2;font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.ev .bd{padding:16px 18px 20px}
+.ev h3{font-size:24px}
+.medal{display:flex;align-items:center;gap:10px;margin-top:10px;font-weight:600;font-size:14.5px}
+.medal i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:800;color:var(--navy2);background:linear-gradient(160deg,#ffe08a,#e9a91f);box-shadow:0 4px 12px rgba(244,183,59,.35)}
+.medal i.s{background:linear-gradient(160deg,#f1f3f8,#b9bfcc)}
+.medal i.b{background:linear-gradient(160deg,#f2c39a,#c27c45)}
+.medal small{color:rgba(255,255,255,.6);font-weight:500}
+
+/* why */
+.why-grid{display:grid;gap:14px}
+.why-item{display:flex;gap:16px;padding:22px;border-radius:20px;background:var(--bg);transition:background .3s}
+.why-item:hover{background:#fff0f1}
+.why-item b{display:block;font-size:17px;font-family:Oswald,sans-serif;text-transform:uppercase;color:var(--navy)}
+.why-item span{font-size:14.5px;color:var(--mut)}
+.quote{margin-top:20px;border-radius:22px;background:var(--navy);color:#fff;padding:26px;position:relative;overflow:hidden}
+.quote:before{content:"“";position:absolute;right:16px;top:-30px;font-family:Anton,sans-serif;font-size:180px;color:rgba(255,255,255,.08)}
+.quote p{font-family:Oswald,sans-serif;font-size:22px;line-height:1.25;text-transform:uppercase}
+.quote span{display:block;margin-top:12px;font-size:13.5px;color:rgba(255,255,255,.7)}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:150px;gap:10px}
+.gal div{border-radius:16px;background-size:cover;background-position:center;transition:transform .4s}
+.gal div:hover{transform:scale(1.03)}
+.gal .big{grid-column:span 2;grid-row:span 2}
+.gal .tall{grid-row:span 2}
+
+/* join */
+.join{background:linear-gradient(150deg,#e3293a 0%,var(--red) 40%,var(--red2) 100%);color:#fff;border-radius:28px;padding:34px 22px;position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(209,32,47,.35)}
+.join .gw{position:absolute;right:-20px;bottom:-40px;font-family:Anton,sans-serif;font-size:200px;line-height:.8;color:rgba(255,255,255,.07)}
+.join h2{font-size:clamp(40px,10vw,64px)}
+.join p.s{color:rgba(255,255,255,.88);margin-top:10px;font-size:16px}
+.form{position:relative;background:#fff;color:var(--ink);border-radius:20px;padding:20px;margin-top:24px;display:grid;gap:12px;box-shadow:0 20px 40px rgba(0,0,0,.2)}
+.form h3{font-size:22px;color:var(--navy)}
+.field{display:grid;gap:5px}
+.field label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.field input,.field select{font:inherit;font-size:15px;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form .btn{width:100%}
+.form small{font-size:12.5px;color:var(--mut);text-align:center}
+
+/* faq */
+.faq details{border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:10px;background:#fff;transition:box-shadow .3s}
+.faq details[open]{box-shadow:0 14px 30px rgba(17,15,51,.08);border-color:transparent}
+.faq summary{list-style:none;cursor:pointer;font-weight:700;font-size:16px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.faq summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:20px;color:var(--red)}
+.faq details[open] summary::after{content:"–";background:var(--red);color:#fff}
+.faq p{color:var(--mut);font-size:15px;margin-top:10px}
+
+/* contact */
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.map .dir{position:absolute;left:14px;bottom:14px;z-index:2;background:var(--red);color:#fff;font-weight:800;font-size:14px;padding:11px 16px;border-radius:12px;box-shadow:0 8px 20px rgba(209,32,47,.4)}
+.contact{display:grid;gap:14px}
+.map{border-radius:22px;min-height:240px;position:relative;overflow:hidden;background:
+  radial-gradient(circle at 50% 50%,rgba(209,32,47,.12),transparent 40%),
+  repeating-linear-gradient(0deg,transparent 0 46px,#e4e3ee 46px 48px),
+  repeating-linear-gradient(90deg,transparent 0 62px,#e4e3ee 62px 64px),
+  linear-gradient(115deg,transparent 45%,#d9d7e8 45% 47%,transparent 47%),#f3f2f8;display:grid;place-items:center}
+.pin{display:flex;flex-direction:column;align-items:center;gap:10px}
+.pin i{width:50px;height:50px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--red);box-shadow:0 10px 24px rgba(209,32,47,.45);position:relative;animation:bob 2.4s ease-in-out infinite}
+.pin i:after{content:"";position:absolute;inset:15px;border-radius:50%;background:#fff}
+@keyframes bob{50%{translate:0 -8px}}
+.pin b{background:#fff;padding:8px 14px;border-radius:12px;font-size:13.5px;box-shadow:0 8px 20px rgba(0,0,0,.1)}
+.cline{display:flex;gap:14px;align-items:center;padding:16px 18px;border:1px solid var(--line);border-radius:18px;transition:border-color .2s,transform .2s}
+.cline:hover{border-color:var(--red);transform:translateX(4px)}
+.cline b{display:block;font-size:16px}.cline span{font-size:13.5px;color:var(--mut)}
+
+footer{background:var(--navy3);color:rgba(255,255,255,.65);padding:46px 0 120px;margin-top:80px;font-size:14px;position:relative;overflow:hidden}
+footer .top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+footer img{width:52px;height:52px;border-radius:12px}
+footer .top b{font-family:Oswald,sans-serif;text-transform:uppercase;color:#fff;font-size:22px;line-height:1}
+footer .bigword{font-family:Anton,sans-serif;font-size:30vw;line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.1);margin-top:26px;letter-spacing:.02em}
+footer .bigword span{color:var(--red);-webkit-text-stroke:0}
+
+/* mobile action bar */
+.mbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:40;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px;border-radius:20px;background:rgba(17,15,51,.92);backdrop-filter:blur(14px);box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.mbar a{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:14px;font-weight:800;font-size:14.5px;color:#fff}
+.mbar a.c{background:var(--red)}
+.mbar a.m{background:rgba(255,255,255,.1)}
+.mbar svg{width:18px;height:18px}
+
+@media (min-width:900px){
+  .bar nav{display:flex}
+  .hero{padding-top:144px}
+  .hero .wrap{grid-template-columns:1.05fr .95fr;align-items:center;gap:40px}
+  .hero .ghost{font-size:30vw}
+  .collage{height:560px}
+  .collage .f1{height:340px}.collage .f2{height:280px;top:200px}.collage .f3{height:210px;top:330px}
+  .pcard{grid-template-columns:1.2fr 1fr 1fr}
+  .styles{grid-template-columns:repeat(3,1fr)}.style{min-height:380px}
+  .events{grid-template-columns:repeat(3,1fr)}
+  .stats{grid-template-columns:repeat(3,1fr);max-width:720px}
+  .why-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .gal{grid-template-columns:repeat(4,1fr);grid-auto-rows:190px}
+  .join{padding:56px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}.join .form{margin-top:0}
+  .contact{grid-template-columns:1.3fr 1fr}
+  .mbar{display:none}
+  footer{padding-bottom:50px}
+  footer .bigword{font-size:20vw}
+}
+@media (max-width:899px){.hero .slab{right:-95%;top:52%;width:150%;height:80%}.hero .slab2{right:-99%;top:52%;width:150%;height:80%}}
+</style>
+</head>
+<body>
+
+<div class="mock">Free mock-up by <b>Zar Builds</b> for Texans Wrestling Club · not the official site yet</div>
+<header class="bar" id="bar"><div class="wrap">
+  <img src="img/logo.jpg" alt="Texans Wrestling Club logo">
+  <div class="nm">Texans Wrestling<small>Argyle · Texas</small></div>
+  <nav><a href="#practice">Practice</a><a href="#styles">Wrestling</a><a href="#results">Results</a><a href="#contact">Contact</a></nav>
+  <a class="btn jbtn" href="#join">Join</a>
+</div></header>
+
+<section class="hero" style="padding-bottom:0">
+  <div class="slab"></div><div class="slab2"></div><div class="grain"></div>
+  <div class="ghost">TEXANS</div>
+  <div class="wrap">
+    <div>
+      <div class="pill"><i></i>Pre-season practice is on · Bring a friend</div>
+      <h1><span class="r">Wrestle<b>Wrestle</b></span>with <span class="s">style.</span></h1>
+      <p class="lead">Argyle's <b>USA Wrestling club</b> for boys and girls ages <b>4 to 18</b>. Competitive on the mat, grassroots at heart, and built around one goal: have fun learning a great sport.</p>
+      <div class="ctas">
+        <a class="btn btn-red" href="#join">Book your first practice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="tel:+12146360377"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call Coach Nick</a>
+      </div>
+      <div class="next">
+        <div><div class="lbl">Next practice</div><div class="when" id="when">Monday · 6:30pm</div></div>
+        <div class="cd"><div><b id="cdd">2</b><span>Days</span></div><div><b id="cdh">04</b><span>Hrs</span></div><div><b id="cdm">17</b><span>Min</span></div></div>
+      </div>
+    </div>
+    <div class="collage">
+      <div class="badge"><span><b>4–18</b>Boys &amp;<br>girls</span></div>
+      <figure class="f1"><img src="img/p1.jpg" alt="Texans wrestlers with their medals"><figcaption>Spring · Oct 2026</figcaption></figure>
+      <figure class="f2"><img src="img/p5.jpg" alt="The whole club together"><figcaption>The Texans family</figcaption></figure>
+      <figure class="f3"><img src="img/p4.jpg" alt="State championships"><figcaption>State champs</figcaption></figure>
+    </div>
+  </div>
+  <div class="ticker"><div class="tr">
+    <span>Lucas · Meet of Champions champion</span><span>Jackson · Meet of Champions champion</span><span>Isabella · State Freestyle winner</span><span>Lucas · State Greco winner</span><span>Big Mass · 3rd, Meet of Champions</span><span>Warren · 2nd at Spring</span><span>Leo · 4th at Spring</span><span>Everyone got better · STYLE</span>
+    <span>Lucas · Meet of Champions champion</span><span>Jackson · Meet of Champions champion</span><span>Isabella · State Freestyle winner</span><span>Lucas · State Greco winner</span><span>Big Mass · 3rd, Meet of Champions</span><span>Warren · 2nd at Spring</span><span>Leo · 4th at Spring</span><span>Everyone got better · STYLE</span>
+  </div></div>
+</section>
+
+<section class="practice" id="practice"><div class="wrap">
+  <div class="pcard">
+    <div class="pbox rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+      <div><div class="k">Practice this week</div><b>6:30 – 8:15pm</b><span>Monday, Tuesday &amp; Thursday nights</span>
+      <div class="days"><em class="on">Mon</em><em class="on">Tue</em><em>Wed</em><em class="on">Thu</em><em>Fri</em></div></div></div>
+    <div class="pbox rv d1"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
+      <div><div class="k">Where</div><b>811D Stonecrest Rd</b><span>Suite 9, Argyle, TX 76226</span></div></div>
+    <div class="pbox rv d2"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg></div>
+      <div><div class="k">Who</div><b>Boys &amp; girls 4–18</b><span>Matched by age and weight</span></div></div>
+  </div>
+</div></section>
+
+<section id="styles"><div class="wrap">
+  <div class="sec-h rv"><div class="eyebrow">What we teach</div><h2>Three styles.<br><em>One team.</em></h2>
+  <p>Fundamentals learned here prepare your son or daughter for high school wrestling and beyond.</p></div>
+  <div class="styles">
+    <div class="style red rv"><div class="bgp" style="background-image:url(img/p4.jpg)"></div><div class="n">01</div><div class="chip">School style</div><h3>Folkstyle</h3><p>The style wrestled in American schools and colleges, and the foundation for every wrestler.</p></div>
+    <div class="style rv d1"><div class="bgp" style="background-image:url(img/p1.jpg)"></div><div class="n">02</div><div class="chip">Olympic</div><h3>Freestyle</h3><p>Fast and high-scoring, with big throws and explosive leg attacks.</p></div>
+    <div class="style rv d2"><div class="bgp" style="background-image:url(img/p3.jpg);background-position:center 20%"></div><div class="n">03</div><div class="chip">Olympic</div><h3>Greco-Roman</h3><p>Upper body only. Builds balance, hand-fighting and powerful throws.</p></div>
+  </div>
+</div></section>
+
+<section class="trophy" id="results"><div class="ghost2">WIN</div><div class="wrap" style="position:relative">
+  <div class="sec-h rv"><div class="eyebrow">The trophy wall</div><h2>Texans on the podium</h2><p>A club that has quickly become competitive without losing its grassroots spirit.</p></div>
+  <div class="stats rv">
+    <div class="stat"><b>4</b><span>Titles in 2026</span></div>
+    <div class="stat"><b>7</b><span>Podium finishes</span></div>
+    <div class="stat"><b>3</b><span>Wrestling styles</span></div>
+  </div>
+  <div class="events">
+    <div class="ev rv"><div class="im" style="background-image:url(img/p3.jpg)"><div class="d">May 2026 · Meet of Champions</div></div>
+      <div class="bd"><h3>Two champions</h3>
+      <div class="medal"><i>1st</i>Lucas <small>· Champion</small></div><div class="medal"><i>1st</i>Jackson <small>· Champion</small></div><div class="medal"><i class="b">3rd</i>Big Mass <small>· overtime thriller</small></div></div></div>
+    <div class="ev rv d1"><div class="im" style="background-image:url(img/p4.jpg)"><div class="d">May 2026 · Freestyle &amp; Greco State</div></div>
+      <div class="bd"><h3>State titles</h3>
+      <div class="medal"><i>1st</i>Isabella <small>· Freestyle</small></div><div class="medal"><i>1st</i>Lucas <small>· Greco-Roman</small></div><div class="medal"><i class="s">2nd</i>Lucas <small>· Freestyle runner-up</small></div></div></div>
+    <div class="ev rv d2"><div class="im" style="background-image:url(img/p1.jpg)"><div class="d">October 2026 · Spring</div></div>
+      <div class="bd"><h3>Pre-season mat time</h3>
+      <div class="medal"><i class="s">2nd</i>Warren</div><div class="medal"><i class="s" style="background:rgba(255,255,255,.15);color:#fff">4th</i>Leo</div><div class="medal"><i>★</i>Everyone got better <small>· STYLE!</small></div></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap why-wrap">
+  <div>
+    <div class="sec-h rv"><div class="eyebrow">Why families choose us</div><h2>Fun first.<br><em>Fundamentals</em> always.</h2>
+    <p>Never wrestled before? Perfect. Every champion on our wall started at their first practice.</p></div>
+    <div class="quote rv"><p>"Our main goal is to have fun while learning a new sport!"</p><span>Texans Wrestling Club</span></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-item rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg></div><div><b>Fun while learning</b><span>Kids keep coming back because they love it.</span></div></div>
+    <div class="why-item rv d1"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 7h14M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0z"/></svg></div><div><b>Matched by age &amp; weight</b><span>Every wrestler faces someone close to their own ability.</span></div></div>
+    <div class="why-item rv d2"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><div><b>Ready for high school</b><span>Solid fundamentals that carry into high school wrestling.</span></div></div>
+    <div class="why-item rv d3"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/></svg></div><div><b>Competitive, grassroots</b><span>State-level results with the same family feel we started with.</span></div></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="sec-h rv"><div class="eyebrow">Club life</div><h2>More than <em>a team</em></h2></div>
+  <div class="gal rv">
+    <div class="big" style="background-image:url(img/p5.jpg)"></div>
+    <div class="tall" style="background-image:url(img/p8.jpg)"></div>
+    <div style="background-image:url(img/p7.jpg)"></div>
+    <div style="background-image:url(img/p1.jpg)"></div>
+    <div style="background-image:url(img/p4.jpg)"></div>
+    <div style="background-image:url(img/p9.jpg)"></div>
+  </div>
+</div></section>
+
+<section id="join" style="padding-top:0"><div class="wrap">
+  <div class="join rv"><div class="gw">GO</div>
+    <div style="position:relative">
+      <div class="eyebrow" style="color:#ffd0d4">New wrestlers welcome</div>
+      <h2 style="margin-top:10px">Your first practice starts here</h2>
+      <p class="s">No experience needed. Come along on a Monday, Tuesday or Thursday, meet Coach Nick and see if your child loves it. Bring a friend!</p>
+    </div>
+    <form class="form" id="book">
+      <h3>Book a first practice</h3>
+      <div class="row2"><div class="field"><label>Wrestler's name</label><input name="name" placeholder="First name" required></div><div class="field"><label>Age</label><select name="age"><option>4–8</option><option>9–12</option><option>13–18</option></select></div></div>
+      <div class="field"><label>Parent's phone</label><input name="phone" type="tel" placeholder="(214) 555-0123" required></div>
+      <div class="field"><label>Which night?</label><select name="night"><option>Monday</option><option>Tuesday</option><option>Thursday</option></select></div>
+      <button class="btn btn-red" type="submit">Save my spot</button>
+      <small id="booknote">Coach Nick will text you to confirm.</small>
+    </form>
+  </div>
+</div></section>
+
+<section class="faq" style="padding-top:0"><div class="wrap" style="max-width:860px">
+  <div class="sec-h rv"><div class="eyebrow">Parents ask</div><h2>Good questions</h2></div>
+  <details open class="rv"><summary>My child has never wrestled. Can they join?</summary><p>Absolutely. Our main goal is to have fun while learning a new sport, and fundamentals are at the heart of every practice.</p></details>
+  <details class="rv"><summary>What ages do you coach?</summary><p>Boys and girls from 4 to 18, matched by age and weight so every match is fair.</p></details>
+  <details class="rv"><summary>Which styles do you teach?</summary><p>All three: Folkstyle, Freestyle and Greco-Roman.</p></details>
+  <details class="rv"><summary>Where and when is practice?</summary><p>811D Stonecrest Rd, Suite 9, Argyle. This week: Monday, Tuesday and Thursday, 6:30 to 8:15pm.</p></details>
+</div></section>
+
+<section id="contact" style="padding-top:0"><div class="wrap">
+  <div class="sec-h rv"><div class="eyebrow">Find us</div><h2>Come and see <em>us</em></h2></div>
+  <div class="contact">
+    <div class="map rv"><iframe title="Map to Texans Wrestling Club" loading="lazy" src="https://maps.google.com/maps?q=811D%20Stonecrest%20Rd%20Suite%209%2C%20Argyle%2C%20TX%2076226&z=15&output=embed"></iframe><a class="dir" href="https://www.google.com/maps/dir/?api=1&destination=811D+Stonecrest+Rd+Suite+9+Argyle+TX+76226" target="_blank" rel="noopener">Get directions →</a></div>
+    <div style="display:grid;gap:10px">
+      <a class="cline rv" href="tel:+12146360377"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div><div><b>214.636.0377</b><span>Call or text Coach Nick</span></div></a>
+      <a class="cline rv d1" href="mailto:NickMcClellan@verizon.net"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div><b>NickMcClellan@verizon.net</b><span>Questions welcome</span></div></a>
+      <a class="cline rv d2" href="https://www.facebook.com/texanswc/" target="_blank" rel="noopener"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z"/></svg></div><div><b>Follow on Facebook</b><span>Practice updates and results every week</span></div></a>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="top"><img src="img/logo.jpg" alt=""><b>Texans Wrestling Club</b></div>
+  <div>USA Wrestling club · Argyle, Texas · Boys &amp; girls 4–18</div>
+  <div class="bigword">STYLE<span>.</span></div>
+</div></footer>
+
+<nav class="mbar"><a class="c" href="tel:+12146360377"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call Coach</a><a class="m" href="#join"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>First practice</a></nav>
+
+<script>
+// sticky bar
+const bar=document.getElementById('bar');const onS=()=>bar.classList.toggle('solid',scrollY>40);addEventListener('scroll',onS,{passive:true});onS();
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// next practice countdown (Mon, Tue, Thu at 6:30pm, Argyle time)
+function tick(){
+  const now=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Chicago'}));
+  const days=[1,2,4],names=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  for(let i=0;i<8;i++){const d=new Date(now);d.setDate(now.getDate()+i);d.setHours(18,30,0,0);
+    if(days.includes(d.getDay())&&d>now){const ms=d-now,m=Math.floor(ms/6e4);
+      document.getElementById('cdd').textContent=Math.floor(m/1440);
+      document.getElementById('cdh').textContent=String(Math.floor(m%1440/60)).padStart(2,'0');
+      document.getElementById('cdm').textContent=String(m%60).padStart(2,'0');
+      document.getElementById('when').textContent=(i===0?'Tonight':i===1?'Tomorrow':names[d.getDay()])+' · 6:30pm';break;}}
+}
+tick();setInterval(tick,30000);
+// booking form: opens an email to Coach Nick with the details filled in
+document.getElementById('book').addEventListener('submit',e=>{
+  e.preventDefault();const f=new FormData(e.target),b=e.target.querySelector('button');
+  const body='Hi Coach Nick,%0D%0A%0D%0AI\'d like to book a first practice.%0D%0A%0D%0AWrestler: '+encodeURIComponent(f.get('name'))+'%0D%0AAge: '+encodeURIComponent(f.get('age'))+'%0D%0ANight: '+encodeURIComponent(f.get('night'))+'%0D%0AParent\'s phone: '+encodeURIComponent(f.get('phone'))+'%0D%0A%0D%0AThanks!';
+  location.href='mailto:NickMcClellan@verizon.net?subject='+encodeURIComponent('First practice: '+f.get('name'))+'&body='+body;
+  b.textContent='Thanks! Your request is ready to send';
+  document.getElementById('booknote').textContent='Your email app has opened with the details filled in. Just press send.';
+});
+</script>
+</body>
+</html>
