@@ -171,10 +171,10 @@ section{padding:80px 0}
 .join p.s{color:rgba(255,255,255,.88);margin-top:10px;font-size:16px}
 .form{position:relative;background:#fff;color:var(--ink);border-radius:20px;padding:20px;margin-top:24px;display:grid;gap:12px;box-shadow:0 20px 40px rgba(0,0,0,.2)}
 .form h3{font-size:22px;color:var(--navy)}
-.field{display:grid;gap:5px}
+.field{display:grid;gap:5px;min-width:0}
 .field label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
-.field input,.field select{font:inherit;font-size:15px;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field input,.field select{width:100%;min-width:0;font:inherit;font-size:16px;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) 104px;gap:10px}
 .form .btn{width:100%}
 .form small{font-size:12.5px;color:var(--mut);text-align:center}
 
@@ -238,6 +238,10 @@ footer .bigword span{color:var(--red);-webkit-text-stroke:0}
   footer .bigword{font-size:20vw}
 }
 @media (max-width:899px){.hero .slab{right:-95%;top:52%;width:150%;height:80%}.hero .slab2{right:-99%;top:52%;width:150%;height:80%}}
+@media (max-width:380px){.pbox{padding:18px 16px;gap:12px}.pbox>div:last-child{min-width:0}.days{gap:4px}.days em{width:auto;flex:1;min-width:0;height:36px;font-size:11px}}
+.contact{grid-template-columns:minmax(0,1fr)}.cline>div:last-child{min-width:0}.cline b{overflow-wrap:anywhere}
+button.btn{border:0;cursor:pointer;font-family:inherit}
+@media (min-width:900px){.contact{grid-template-columns:1.3fr 1fr}}
 </style>
 </head>
 <body>
