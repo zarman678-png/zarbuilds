@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Natasha's Law Label Maker | Zar Builds</title>
+<meta name="description" content="Free allergen label maker for UK food businesses: type your ingredients once and print Natasha's Law labels with the 14 allergens in bold, an allergen chart and a customer QR page.">
+<link rel="canonical" href="https://zarman678-png.github.io/zarbuilds/tools/allergen-labels/">
+<!-- Zar Builds allergen labels tool (25 Oct 2026, early version for the first food businesses that say yes).
+     Type each product's ingredients once: the 14 UK allergens are found and put in bold, then print Natasha's Law labels,
+     the allergen chart, or a customer page with a QR code. Everything stays in this browser (localStorage). The business
+     checks every label: the finder only suggests. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{--ink:#10241c;--muted:#56665e;--line:#dfe6e1;--bg:#f4f2ec;--card:#fff;--brand:#0d5a44;--brand2:#e9f3ee;--accent:#f2b134;--warn:#a33a12}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 -apple-system,'SF Pro Text','Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .bar{background:var(--brand);color:#fff}
+  .bar .in{max-width:1000px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.01em}
+  .bar .dot{width:34px;height:34px;border-radius:10px;background:var(--accent);display:grid;place-items:center;color:var(--brand);font-size:18px}
+  .bar small{font-weight:600;opacity:.8;margin-left:auto}
+  main{max-width:1000px;margin:0 auto;padding:22px 16px 70px}
+  .hero{display:grid;gap:14px;margin:6px 0 10px}
+  h1{font-size:clamp(28px,5vw,40px);line-height:1.1;margin:0;letter-spacing:-.02em} h2{font-size:21px;margin:0 0 12px;letter-spacing:-.01em}
+  .note{color:var(--muted);margin:0;max-width:62ch}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:8px 0 0;padding:0;list-style:none}
+  .steps li{background:var(--brand2);border-radius:12px;padding:10px 12px;font-weight:600;font-size:15px}
+  .steps b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--brand);color:#fff;font-size:13px;margin-right:6px}
+  .grid{display:grid;grid-template-columns:1fr;gap:14px} @media(min-width:860px){.grid{grid-template-columns:360px 1fr}}
+  .card+.card{margin-top:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 1px 0 rgba(16,36,28,.04),0 12px 30px -22px rgba(16,36,28,.35)}
+  label{display:block;font-weight:650;margin:12px 0 5px;font-size:15px}
+  input,textarea{width:100%;font:inherit;padding:11px 13px;border:1.5px solid #c3cec7;border-radius:12px;background:#fff;color:var(--ink)}
+  textarea{min-height:110px;resize:vertical}
+  button{font:inherit;font-weight:750;padding:11px 16px;border-radius:12px;border:0;background:var(--brand);color:#fff;cursor:pointer;margin:8px 8px 0 0}
+  button:hover{filter:brightness(1.08)} button.ghost{background:var(--brand2);color:var(--brand)} button.del{background:transparent;color:var(--warn);padding:6px 8px;margin:0;font-weight:650}
+  button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;min-height:10px} .chip{background:#fff4dc;border:1px solid #f0d08a;color:#6b4a00;border-radius:999px;padding:3px 10px;font-size:14px;font-weight:700}
+  #live{color:var(--muted);margin:8px 0 0;font-size:15px}
+  .prod{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start;padding:12px 0;border-top:1px solid var(--line)} .prod:first-child{border-top:0}
+  .label{border:2px solid var(--ink);border-radius:10px;padding:12px 14px;max-width:440px;font-size:15px;line-height:1.4;background:#fff}
+  .label .n{font-weight:850;font-size:18px;margin-bottom:4px} .label .c{margin-top:8px;font-size:13px} .label .c b{font-weight:800}
+  .label .bz{margin-top:6px;font-size:12px;color:#444;border-top:1px dashed #bbb;padding-top:6px}
+  .empty{color:var(--muted);text-align:center;padding:26px 10px;border:2px dashed var(--line);border-radius:14px}
+  .actions{display:flex;flex-wrap:wrap;margin-top:6px}
+  .tablewrap{overflow-x:auto} table{border-collapse:collapse;width:100%;font-size:14px;background:#fff} th,td{border:1px solid #9aa59f;padding:6px;text-align:center}
+  th:first-child,td:first-child{text-align:left} thead th{background:var(--brand2);font-size:12px} td.y{font-weight:900;background:#fff4dc}
+  #qr{margin:10px 0;padding:10px;background:#fff;display:inline-block;border-radius:12px;border:1px solid var(--line)} .warn{color:var(--warn);font-weight:650;font-size:14px;margin:6px 0 0}
+  footer{color:var(--muted);font-size:14px;margin-top:24px}
+  @media print{body{background:#fff} .noprint,.bar{display:none!important} main{padding:0} .card{border:0;padding:0;margin:0;box-shadow:none}
+    .prod{display:inline-block;width:48%;margin:1%;vertical-align:top;border:0;padding:0} .label{break-inside:avoid;max-width:none} .print-only{display:block!important}}
+  .print-only{display:none}
+</style></head>
+<body><div class="bar noprint"><div class="in"><span class="dot" aria-hidden="true">✓</span>Allergen Labels <small>by Zar Builds</small></div></div><main>
+<header class="hero noprint"><h1>Natasha's Law labels, done in minutes</h1>
+<p class="note">Type each product and its ingredients once. The 14 allergens are found and put in bold for you. Then print your labels, your allergen chart, or show customers a page they can check on their phone. Please check every label before you use it: the tool suggests, you confirm.</p>
+<ol class="steps"><li><b>1</b>Add your business</li><li><b>2</b>Type each product's ingredients</li><li><b>3</b>Print labels and your chart</li></ol></header>
+<div class="grid"><div>
+
+<section class="card noprint" aria-labelledby="biz-h"><h2 id="biz-h">Your business</h2>
+  <label for="bname">Business name (printed on every label)</label><input id="bname" autocomplete="organization">
+  <label for="baddr">Address or town (optional)</label><input id="baddr" autocomplete="street-address">
+</section>
+
+<section class="card noprint" aria-labelledby="add-h"><h2 id="add-h">Add a product</h2>
+  <label for="pname">Product name</label><input id="pname" placeholder="Cheese and pickle sandwich">
+  <label for="pingr">Ingredients, in order, separated by commas</label>
+  <textarea id="pingr" placeholder="Wheat flour, water, cheddar cheese (milk), pickle (vinegar, sugar, mustard seed), butter (milk), salt"></textarea>
+  <div class="chips" id="chips" aria-hidden="true"></div><p id="live" aria-live="polite"></p>
+  <button id="add">Add product</button> <button id="demo" class="ghost">Try an example</button>
+</section></div>
+
+<section class="card" aria-labelledby="list-h"><h2 id="list-h">Your labels</h2><div id="list"></div>
+  <div class="actions noprint"><button id="pl">Print labels</button><button id="pc" class="ghost">Print allergen chart</button><button id="pq" class="ghost">Customer page and QR code</button></div>
+</section></div>
+
+<section class="card print-only" id="chart" aria-label="Allergen chart"></section>
+<section class="card" id="cust" hidden aria-labelledby="cust-h"><h2 id="cust-h">Customer page</h2>
+  <p>Show this page on a tablet, or print the QR code for your counter so customers can check on their phone.</p><div id="qr"></div><div id="custlist"></div></section>
+<footer class="noprint">Allergen Labels is an early version by Zar Builds. Your products stay on this device. It finds common allergen words, but only you know your recipes, so always check each label against your ingredients and suppliers' labels.</footer>
+<section class="card noprint" style="margin-top:18px" aria-labelledby="cta-h"><h2 id="cta-h">Want it done for you?</h2>
+<p>I can type up your whole range for you, keep your labels and allergen chart up to date when recipes change, and put the allergen page on your own website. Email <a href="mailto:help@firstfive.uk?subject=Allergen%20labels">help@firstfive.uk</a> and Zar will get back to you. You only pay once you're happy with it.</p>
+<p><a href="../../">More about Zar Builds</a></p></section>
+</main>
+<script>
+'use strict';
+/* The 14 allergens UK food law lists, with the words that usually mean them. Sulphites only count at 10 mg/kg or more,
+   so they are flagged to check rather than assumed. */
+const ALLERGENS = [
+  ['Cereals containing gluten', /\b(wheat|rye|barley|oats?|spelt|kamut|semolina|durum|couscous|bulgur|malt|flour|breadcrumbs?|gluten)\b/i],
+  ['Crustaceans', /\b(crab|lobster|prawns?|shrimps?|crayfish|langoustines?|scampi|crustaceans?)\b/i],
+  ['Eggs', /\b(eggs?|egg yolk|albumen|mayonnaise|meringue)\b/i],
+  ['Fish', /\b(fish|salmon|tuna|cod|haddock|anchov(y|ies)|mackerel|sardines?|trout|pollock|worcestershire sauce|fish sauce)\b/i],
+  ['Peanuts', /\b(peanuts?|groundnuts?|monkey nuts?|arachis)\b/i],
+  ['Soya', /\b(soya|soy|soybeans?|tofu|edamame|miso|tempeh)\b/i],
+  ['Milk', /\b(milk|(?<!(?:peanut|cocoa|shea|nut|almond|cashew) )butter|cheese|cheddar|mozzarella|parmesan|cream|yogh?urt|whey|casein|lactose|ghee|buttermilk|cr[eè]me fra[iî]che)\b/i],
+  ['Nuts', /\b(almonds?|hazelnuts?|walnuts?|cashews?|pecans?|brazil nuts?|pistachios?|macadamias?|queensland nuts?|praline|marzipan|frangipane|nut)\b/i],
+  ['Celery', /\b(celery|celeriac)\b/i],
+  ['Mustard', /\b(mustard)\b/i],
+  ['Sesame', /\b(sesame|tahini|halva)\b/i],
+  ['Sulphur dioxide and sulphites (check: 10 mg/kg or more)', /\b(sulphites?|sulfites?|sulphur dioxide|metabisulphite|e22[0-8]|wine|dried apricots?)\b/i],
+  ['Lupin', /\b(lupin|lupine)\b/i],
+  ['Molluscs', /\b(mussels?|oysters?|squid|octopus|clams?|scallops?|whelks?|snails?|cockles?|molluscs?|calamari)\b/i],
+];
+const KEY = 'zb-allergen-labels-v1';
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let data = { business: '', address: '', products: [] };
+try { data = Object.assign(data, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (_) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (_) {} };
+
+function found(ingr) { return ALLERGENS.filter(([, re]) => re.test(ingr)).map(([n]) => n); }
+/* each allergen word in bold, as the law asks for emphasis in the ingredients list */
+function bolded(ingr) {
+  /* one pass over the plain text, so a word already in bold can't change what the next pattern sees ("peanut butter" isn't milk) */
+  const all = new RegExp(ALLERGENS.map(([, re]) => '(?:' + re.source + ')').join('|'), 'gi');
+  return esc(ingr).replace(all, (m) => `<b>${m.toUpperCase()}</b>`);
+}
+function short(n) { return n.replace(/ \(check.*\)/, ''); }
+
+function render() {
+  $('bname').value = data.business; $('baddr').value = data.address;
+  $('list').innerHTML = data.products.length ? data.products.map((p, i) => `<div class="prod">
+      <div class="label"><div class="n">${esc(p.name)}</div><div><b>Ingredients:</b> ${bolded(p.ingr)}</div>
+        <div class="c">${found(p.ingr).length ? '<b>Contains:</b> ' + found(p.ingr).map(short).join(', ') : 'No major allergens found: please check.'}</div>${data.business ? '<div class="bz">' + esc(data.business) + (data.address ? ', ' + esc(data.address) : '') + '</div>' : ''}</div>
+      ${found(p.ingr).some((n) => /check/.test(n)) ? '<p class="warn noprint">Check whether sulphites are 10 mg/kg or more before listing them.</p>' : ''}
+      <button class="del noprint" data-i="${i}" aria-label="Remove ${esc(p.name)}">Remove</button></div>`).join('') : '<p class="empty">No labels yet. Add your first product, or press Try an example.</p>';
+  const names = ALLERGENS.map(([n]) => short(n));
+  $('chart').innerHTML = `<h2>Allergen chart${data.business ? ': ' + esc(data.business) : ''}</h2><div class="tablewrap"><table><caption class="noprint">Y means the product contains it</caption>
+    <thead><tr><th scope="col">Product</th>${names.map((n) => `<th scope="col">${esc(n)}</th>`).join('')}</tr></thead>
+    ${data.products.map((p) => { const f = found(p.ingr).map(short); return `<tr><th scope="row">${esc(p.name)}</th>${names.map((n) => f.includes(n) ? '<td class="y">Y</td>' : '<td></td>').join('')}</tr>`; }).join('')}</table></div>
+    <p>Please ask a member of staff if you have an allergy.</p>`;
+}
+$('pingr').addEventListener('input', () => { const f = found($('pingr').value).map(short);
+  $('chips').innerHTML = f.map((n) => `<span class="chip">${esc(n)}</span>`).join('');
+  $('live').textContent = f.length ? 'Allergens found: ' + f.join(', ') + '.' : ''; });
+$('demo').addEventListener('click', () => { $('pname').value = 'Cheese and pickle sandwich';
+  $('pingr').value = 'Wheat flour, water, cheddar cheese (milk), pickle (vinegar, sugar, mustard seed), butter (milk), salt'; $('pingr').dispatchEvent(new Event('input')); $('pname').focus(); });
+$('bname').addEventListener('input', (e) => { data.business = e.target.value; save(); });
+$('baddr').addEventListener('input', (e) => { data.address = e.target.value; save(); });
+$('add').addEventListener('click', () => {
+  const name = $('pname').value.trim(), ingr = $('pingr').value.trim();
+  if (!name || !ingr) { $('live').textContent = 'Please type a product name and its ingredients.'; return; }
+  data.products.push({ name, ingr }); save(); $('pname').value = ''; $('pingr').value = ''; $('chips').innerHTML = ''; $('live').textContent = name + ' added.'; render(); $('pname').focus();
+});
+$('list').addEventListener('click', (e) => { const i = e.target.dataset.i; if (i != null) { data.products.splice(Number(i), 1); save(); render(); } });
+$('pl').addEventListener('click', () => { $('chart').classList.remove('print-only'); $('chart').hidden = true; window.print(); $('chart').hidden = false; $('chart').classList.add('print-only'); });
+$('pc').addEventListener('click', () => { document.body.classList.add('chart-print'); $('list').parentElement.hidden = true; $('chart').classList.remove('print-only');
+  window.print(); $('list').parentElement.hidden = false; $('chart').classList.add('print-only'); });
+/* customer page: the list, and a QR code that opens the same list (the products travel in the link, nothing is stored online) */
+$('pq').addEventListener('click', () => {
+  const payload = btoa(unescape(encodeURIComponent(JSON.stringify({ b: data.business, p: data.products.map((p) => [p.name, found(p.ingr).map(short)]) }))));
+  const url = location.href.split('#')[0] + '#menu=' + payload;
+  $('cust').hidden = false; $('qr').innerHTML = '';
+  try { new QRCode($('qr'), { text: url, width: 200, height: 200 }); } catch (_) { $('qr').textContent = 'QR code could not be made (link too long): share this page instead.'; }
+  showMenu(data.business, data.products.map((p) => [p.name, found(p.ingr).map(short)]));
+  $('cust').scrollIntoView();
+});
+function showMenu(b, items) {
+  $('custlist').innerHTML = `<h3>${esc(b || 'Allergens in our food')}</h3>` + items.map(([n, f]) => `<p><b>${esc(n)}</b>: ${f.length ? 'contains ' + f.map(esc).join(', ') : 'no major allergens listed'}</p>`).join('') +
+    '<p>Please ask a member of staff if you have an allergy.</p>';
+}
+/* opened from the QR code: show only the customer list */
+const m = location.hash.match(/#menu=(.+)/);
+if (m) {
+  try { const d = JSON.parse(decodeURIComponent(escape(atob(m[1])))); document.querySelectorAll('main > *').forEach((el) => { el.hidden = true; });
+    $('cust').hidden = false; $('cust').querySelector('p').hidden = true; showMenu(d.b, d.p); } catch (_) {}
+}
+render();
+</script>
+</body></html>
