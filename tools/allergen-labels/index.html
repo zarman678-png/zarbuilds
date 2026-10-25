@@ -46,6 +46,8 @@
   @media print{body{background:#fff} .noprint,.bar{display:none!important} main{padding:0} .card{border:0;padding:0;margin:0;box-shadow:none}
     .prod{display:inline-block;width:48%;margin:1%;vertical-align:top;border:0;padding:0} .label{break-inside:avoid;max-width:none} .print-only{display:block!important}}
   .print-only{display:none}
+  .ghostlabel{display:inline-block;font-size:17px;font-weight:750;padding:11px 16px;border-radius:12px;background:var(--brand2);color:var(--brand);cursor:pointer;margin:8px 8px 0 0}
+  button.edit{background:transparent;color:var(--brand);padding:6px 8px;margin:0;font-weight:650}
 </style></head>
 <body><div class="bar noprint"><div class="in"><span class="dot" aria-hidden="true">✓</span>Allergen Labels <small>by Zar Builds</small></div></div><main>
 <header class="hero noprint"><h1>Natasha's Law labels, done in minutes</h1>
@@ -63,20 +65,25 @@
   <label for="pingr">Ingredients, in order, separated by commas</label>
   <textarea id="pingr" placeholder="Wheat flour, water, cheddar cheese (milk), pickle (vinegar, sugar, mustard seed), butter (milk), salt"></textarea>
   <div class="chips" id="chips" aria-hidden="true"></div><p id="live" aria-live="polite"></p>
+  <label for="pmay">May contain (optional, for cross-contamination warnings)</label><input id="pmay" placeholder="Nuts, sesame">
   <button id="add">Add product</button> <button id="demo" class="ghost">Try an example</button>
 </section></div>
 
 <section class="card" aria-labelledby="list-h"><h2 id="list-h">Your labels</h2><div id="list"></div>
   <div class="actions noprint"><button id="pl">Print labels</button><button id="pc" class="ghost">Print allergen chart</button><button id="pq" class="ghost">Customer page and QR code</button></div>
+  <div class="actions noprint"><button id="bk" class="ghost">Save a backup</button><label class="ghostlabel" for="ld">Load a backup</label><input id="ld" type="file" accept="application/json" hidden></div>
 </section></div>
 
 <section class="card print-only" id="chart" aria-label="Allergen chart"></section>
 <section class="card" id="cust" hidden aria-labelledby="cust-h"><h2 id="cust-h">Customer page</h2>
   <p>Show this page on a tablet, or print the QR code for your counter so customers can check on their phone.</p><div id="qr"></div><div id="custlist"></div></section>
 <footer class="noprint">Allergen Labels is an early version by Zar Builds. Your products stay on this device. It finds common allergen words, but only you know your recipes, so always check each label against your ingredients and suppliers' labels.</footer>
-<section class="card noprint" style="margin-top:18px" aria-labelledby="cta-h"><h2 id="cta-h">Want it done for you?</h2>
-<p>I can type up your whole range for you, keep your labels and allergen chart up to date when recipes change, and put the allergen page on your own website. Email <a href="mailto:help@firstfive.uk?subject=Allergen%20labels">help@firstfive.uk</a> and Zar will get back to you. You only pay once you're happy with it.</p>
-<p><a href="../../">More about Zar Builds</a></p></section>
+<section class="card noprint plans" aria-labelledby="plan-h" style="margin-top:18px"><h2 id="plan-h">Free to use, or done for you</h2>
+<div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+<div style="border:1.5px solid #cfd8d2;border-radius:14px;padding:14px"><h3 style="margin:0 0 4px">Free</h3><p style="margin:0 0 8px;font-weight:700">£0, no sign-up</p><ul><li>Make and print as many labels as you like</li><li>Allergen chart for your counter</li><li>Customer page with a QR code</li><li>Backups, so nothing gets lost</li></ul></div>
+<div style="border:2px solid currentColor;border-radius:14px;padding:14px"><h3 style="margin:0 0 4px">Done for you</h3><p style="margin:0 0 8px;font-weight:700">£15 a month, first month free</p><ul><li>Zar types up your whole range from your recipes or packaging</li><li>Labels and chart updated whenever a recipe or supplier changes</li><li>Your allergen page on your own website</li><li>A real person to ask when you're not sure</li></ul>
+<p><a class="cta-mail" href="mailto:help@firstfive.uk?subject=Allergen%20labels%20done%20for%20me" style="font-weight:800">Email help@firstfive.uk to start</a>. Cancel any time.</p></div></div>
+<p style="margin-top:12px">Made by Zar Builds, a small web business near Burton upon Trent. <a href="../../">More about Zar Builds</a></p></section>
 </main>
 <script>
 'use strict';
@@ -118,9 +125,9 @@ function render() {
   $('bname').value = data.business; $('baddr').value = data.address;
   $('list').innerHTML = data.products.length ? data.products.map((p, i) => `<div class="prod">
       <div class="label"><div class="n">${esc(p.name)}</div><div><b>Ingredients:</b> ${bolded(p.ingr)}</div>
-        <div class="c">${found(p.ingr).length ? '<b>Contains:</b> ' + found(p.ingr).map(short).join(', ') : 'No major allergens found: please check.'}</div>${data.business ? '<div class="bz">' + esc(data.business) + (data.address ? ', ' + esc(data.address) : '') + '</div>' : ''}</div>
+        <div class="c">${found(p.ingr).length ? '<b>Contains:</b> ' + found(p.ingr).map(short).join(', ') : 'No major allergens found: please check.'}${p.may ? '<br><b>May contain:</b> ' + esc(p.may) : ''}</div>${data.business ? '<div class="bz">' + esc(data.business) + (data.address ? ', ' + esc(data.address) : '') + '</div>' : ''}</div>
       ${found(p.ingr).some((n) => /check/.test(n)) ? '<p class="warn noprint">Check whether sulphites are 10 mg/kg or more before listing them.</p>' : ''}
-      <button class="del noprint" data-i="${i}" aria-label="Remove ${esc(p.name)}">Remove</button></div>`).join('') : '<p class="empty">No labels yet. Add your first product, or press Try an example.</p>';
+      <div class="noprint"><button class="edit" data-e="${i}" aria-label="Edit ${esc(p.name)}">Edit</button><button class="del" data-i="${i}" aria-label="Remove ${esc(p.name)}">Remove</button></div></div>`).join('') : '<p class="empty">No labels yet. Add your first product, or press Try an example.</p>';
   const names = ALLERGENS.map(([n]) => short(n));
   $('chart').innerHTML = `<h2>Allergen chart${data.business ? ': ' + esc(data.business) : ''}</h2><div class="tablewrap"><table><caption class="noprint">Y means the product contains it</caption>
     <thead><tr><th scope="col">Product</th>${names.map((n) => `<th scope="col">${esc(n)}</th>`).join('')}</tr></thead>
@@ -135,11 +142,26 @@ $('demo').addEventListener('click', () => { $('pname').value = 'Cheese and pickl
 $('bname').addEventListener('input', (e) => { data.business = e.target.value; save(); });
 $('baddr').addEventListener('input', (e) => { data.address = e.target.value; save(); });
 $('add').addEventListener('click', () => {
-  const name = $('pname').value.trim(), ingr = $('pingr').value.trim();
+  const name = $('pname').value.trim(), ingr = $('pingr').value.trim(), may = $('pmay').value.trim();
   if (!name || !ingr) { $('live').textContent = 'Please type a product name and its ingredients.'; return; }
-  data.products.push({ name, ingr }); save(); $('pname').value = ''; $('pingr').value = ''; $('chips').innerHTML = ''; $('live').textContent = name + ' added.'; render(); $('pname').focus();
+  if (editing != null) { data.products[editing] = { name, ingr, may }; editing = null; $('add').textContent = 'Add product'; }
+  else data.products.push({ name, ingr, may });
+  save(); hit('use'); $('pname').value = ''; $('pingr').value = ''; $('pmay').value = ''; $('chips').innerHTML = ''; $('live').textContent = name + ' saved.'; render(); $('pname').focus();
 });
-$('list').addEventListener('click', (e) => { const i = e.target.dataset.i; if (i != null) { data.products.splice(Number(i), 1); save(); render(); } });
+let editing = null;
+$('list').addEventListener('click', (e) => {
+  const i = e.target.dataset.i, ed = e.target.dataset.e;
+  if (i != null) { data.products.splice(Number(i), 1); save(); render(); }
+  if (ed != null) { const p = data.products[Number(ed)]; editing = Number(ed); $('pname').value = p.name; $('pingr').value = p.ingr; $('pmay').value = p.may || '';
+    $('pingr').dispatchEvent(new Event('input')); $('add').textContent = 'Save changes'; $('pname').focus(); }
+});
+/* a backup file, so a business can move its products to another device or keep a copy */
+$('bk').addEventListener('click', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' }));
+  a.download = 'allergen-labels-backup.json'; a.click(); });
+$('ld').addEventListener('change', async (e) => { try { const d = JSON.parse(await e.target.files[0].text()); if (Array.isArray(d.products)) { data = Object.assign(data, d); save(); render(); $('live').textContent = 'Backup loaded.'; } } catch (_) { $('live').textContent = 'That file could not be read.'; } });
+/* counts only (no cookies, nothing about the person): which tools get used, for Zar Builds' own figures */
+function hit(e) { try { if (location.protocol === 'https:') fetch('https://firstfive.nomiapp.net/api/tools/hit?t=allergen-labels&e=' + e, { mode: 'no-cors', keepalive: true }); } catch (_) {} }
+if (!location.hash.includes('menu=')) hit('view');
 $('pl').addEventListener('click', () => { $('chart').classList.remove('print-only'); $('chart').hidden = true; window.print(); $('chart').hidden = false; $('chart').classList.add('print-only'); });
 $('pc').addEventListener('click', () => { document.body.classList.add('chart-print'); $('list').parentElement.hidden = true; $('chart').classList.remove('print-only');
   window.print(); $('list').parentElement.hidden = false; $('chart').classList.add('print-only'); });
@@ -163,5 +185,6 @@ if (m) {
     $('cust').hidden = false; $('cust').querySelector('p').hidden = true; showMenu(d.b, d.p); } catch (_) {}
 }
 render();
+document.querySelectorAll('.cta-mail').forEach((a) => a.addEventListener('click', () => { try { hit('cta'); } catch (_) {} }));
 </script>
 </body></html>

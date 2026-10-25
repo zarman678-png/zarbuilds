@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free Google Review QR Code Card | Zar Builds</title>
-<meta name="description" content="Free Google review kit for local businesses: a printable counter card with a QR code to your review page, plus ready-to-send text and email messages.">
+<meta name="description" content="Free Google review kit for local businesses: a printable counter card with a QR code to your review page, plus one-tap WhatsApp, text and email messages.">
 <link rel="canonical" href="https://zarman678-png.github.io/zarbuilds/tools/review-kit/">
 <!-- Zar Builds Google review kit (25 Oct 2026, for the reviews offer). The business pastes its own Google review link
      (Google Business Profile > Ask for reviews), and gets a counter card with a QR code to print, plus ready-to-send text
@@ -23,6 +23,8 @@
   .counter .stars{color:var(--star);font-size:34px;letter-spacing:4px} .counter .h{font-size:26px;font-weight:850;margin:6px 0} .counter #qr{display:inline-block;margin:12px 0}
   .counter .s{color:var(--muted);font-size:15px}
   .help{font-size:15px;color:var(--muted)}
+  a.send{display:inline-block;font-weight:750;padding:11px 16px;border-radius:12px;background:var(--brand);color:#fff;text-decoration:none;margin:4px 8px 6px 0}
+  a.send:focus-visible{outline:3px solid var(--star);outline-offset:2px}
   @media print{body{background:#fff} .noprint,.bar{display:none!important} main{padding:0} .card{border:0;box-shadow:none;padding:0}}
 </style></head>
 <body><div class="bar noprint"><div class="in">★ Review Kit <small>by Zar Builds</small></div></div><main>
@@ -41,12 +43,17 @@
     <div class="s">Scan to leave us a quick Google review.<br>It really helps a small business. Thank you!</div></div>
   <div class="noprint"><button id="print" class="ghost">Print the card</button></div></section>
 <section class="card noprint"><h2>Messages to send after each job</h2>
+  <p class="help">On your phone, tap a button to send the message straight to the customer.</p>
+  <div><a class="send" id="wa" target="_blank" rel="noopener">Send by WhatsApp</a><a class="send" id="tx">Send by text</a><a class="send" id="em">Send by email</a></div>
   <label for="sms">Text message</label><textarea id="sms" readonly></textarea><button data-copy="sms" class="ghost">Copy text message</button>
   <label for="mail">Email</label><textarea id="mail" readonly style="min-height:170px"></textarea><button data-copy="mail" class="ghost">Copy email</button>
   <p id="msg" aria-live="polite"></p></section>
-</div></div><section class="card noprint" style="margin-top:18px" aria-labelledby="cta-h"><h2 id="cta-h">Want it done for you?</h2>
-<p>I can set it up so every customer gets the review message automatically after each job, by text or email. Email <a href="mailto:help@firstfive.uk?subject=Google%20reviews">help@firstfive.uk</a> and Zar will get back to you. You only pay once you're happy with it.</p>
-<p><a href="../../">More about Zar Builds</a></p></section>
+</div></div><section class="card noprint plans" aria-labelledby="plan-h" style="margin-top:18px"><h2 id="plan-h">Free to use, or done for you</h2>
+<div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+<div style="border:1.5px solid #cfd8d2;border-radius:14px;padding:14px"><h3 style="margin:0 0 4px">Free</h3><p style="margin:0 0 8px;font-weight:700">£0, no sign-up</p><ul><li>Printable counter card with your QR code</li><li>Ready-made review request messages</li><li>One-tap sending by WhatsApp, text or email</li></ul></div>
+<div style="border:2px solid currentColor;border-radius:14px;padding:14px"><h3 style="margin:0 0 4px">Automatic review requests</h3><p style="margin:0 0 8px;font-weight:700">£15 a month, first month free</p><ul><li>Every customer gets your review message automatically after each job</li><li>A gentle reminder if they don't leave one</li><li>A monthly note of how many new reviews you got</li><li>Set up for you in a day</li></ul>
+<p><a class="cta-mail" href="mailto:help@firstfive.uk?subject=Automatic%20review%20requests" style="font-weight:800">Email help@firstfive.uk to start</a>. Cancel any time.</p></div></div>
+<p style="margin-top:12px">Made by Zar Builds, a small web business near Burton upon Trent. <a href="../../">More about Zar Builds</a></p></section>
 </main>
 <script>
 'use strict';
@@ -59,10 +66,19 @@ function draw() {
   $('ch').textContent = d.biz ? 'Enjoyed ' + d.biz + '?' : 'Enjoyed your visit?';
   $('qr').innerHTML = ''; if (d.link) try { new QRCode($('qr'), { text: d.link, width: 180, height: 180 }); } catch (_) {}
   $('sms').value = `Hi, thanks for choosing ${biz}! If you were happy with everything, a quick Google review would really help us: ${link}${d.name ? ' Thanks, ' + d.name + '.' : ''}`;
+  const smsText = $('sms').value;
+  $('wa').href = 'https://wa.me/?text=' + encodeURIComponent(smsText); $('tx').href = 'sms:?&body=' + encodeURIComponent(smsText);
   $('mail').value = `Subject: Thank you from ${biz}\n\nHi,\n\nThank you for choosing ${biz}. We hope you're happy with everything.\n\nIf you have a minute, a quick Google review would really help other people find us. It's one tap from here:\n${link}\n\nThank you!\n${d.name || ''}${d.name ? '\n' : ''}${d.biz || ''}`;
 }
+function emailLink() { const v = $('mail').value, i = v.indexOf('\n\n'); $('em').href = 'mailto:?subject=' + encodeURIComponent(v.slice(9, i)) + '&body=' + encodeURIComponent(v.slice(i + 2)); }
+['wa', 'tx', 'em'].forEach((id) => $(id).addEventListener('click', () => hit('use')));
+/* counts only (no cookies, nothing about the person): which tools get used, for Zar Builds' own figures */
+function hit(e) { try { if (location.protocol === 'https:') fetch('https://firstfive.nomiapp.net/api/tools/hit?t=review-kit&e=' + e, { mode: 'no-cors', keepalive: true }); } catch (_) {} }
+hit('view');
 ['biz', 'link', 'name'].forEach((k) => { $(k).value = d[k]; $(k).addEventListener('input', () => { d[k] = $(k).value.trim(); draw(); }); });
 document.querySelectorAll('[data-copy]').forEach((b) => b.addEventListener('click', async () => { try { await navigator.clipboard.writeText($(b.dataset.copy).value); $('msg').textContent = 'Copied.'; } catch (_) { $(b.dataset.copy).select(); } }));
 $('print').addEventListener('click', () => window.print());
-draw();
+draw(); emailLink();
+['biz', 'link', 'name'].forEach((k) => $(k).addEventListener('input', emailLink));
+document.querySelectorAll('.cta-mail').forEach((a) => a.addEventListener('click', () => { try { hit('cta'); } catch (_) {} }));
 </script></body></html>
